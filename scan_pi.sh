@@ -12,6 +12,6 @@ echo -e "Your IP with prefix is $IPP"
 echo "============================================"
 
 # Nmap 
-Result=$(sudo nmap -sP $IPP | tr '\n' ',' | sed -n 's/.*\(Raspberry[^,]\+,[^,]\+\).*/\1/p')
-echo "MAC Name: $(echo -ne "$Result" | sed -n 's/\([^)]*\).*/\1/p')"
-echo "      IP: $(echo -ne "$Result" | sed -n 's/.*\s\([0-9.]*\)$/\1/p')"
+Result=$(sudo nmap -sP $IPP | tr '\n' ',' | sed -n 's/.*\(Nmap[^,]\+,[^,]\+,[^,]\+Raspberry[^)]*\).*/\1/p')
+echo "MAC Name: $(echo -ne "$Result" | sed -n 's/.*\(Raspberry.*\)/\1/p')"
+echo "      IP: $(echo -ne "$Result" | sed -n 's/.*\(\s[[:digit:]][^,]\+\).*/\1/p')"
